@@ -1,0 +1,44 @@
+version: '2.1'
+
+services:
+  contentscontainer:
+    extends:
+      file: common.yml
+      service: datacontainer
+    container_name: test_contentsContainer
+    volumes: 
+      - "/docker/contents:/contents"
+
+  logcontainer:
+    extends:
+      file: common.yml
+      service: datacontainer
+    container_name: test_logContainer
+    volumes: 
+      - /docker/logs:/logs
+
+  web1:
+    extends:
+      file: common.yml
+      service: web
+    hostname: test_web1
+    build: 
+      args: 
+        host: web1  
+    ports: 
+      - 80
+    environment: 
+      - VIRTUAL_HOST=hoge.hoge
+    volumes_from:   
+      - contentscontainer:rw
+      - logcontainer:rw
+
+
+# network
+networks: 
+  test_network:
+    driver: bridge
+    ipam: # IP Addres Management
+      config: 
+        - subnet: 172.30.0.1/24
+          gateway: 172.30.0.1
