@@ -1,0 +1,16 @@
+version: '2.1'
+
+services:
+  datacontainer:
+    build:
+      context: ./box
+      dockerfile: Dockerfile
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    mem_limit: 128MB
+    restart: always
+    networks:
+      test_network:
