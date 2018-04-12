@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  datacodebox:
+    image: busybox
+    volumes:
+      - /docker/codebox:/workspace
+  codebox:
+    build:
+      context: codebox
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes_from:
+      - datacodebox
+    restart: always
+  prometheus:
+    image: prom/prometheus 
+    volumes:
+      - /docker/pro-data:/etc/prometheus/
+    ports:
+      - 9090:9090
