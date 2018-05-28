@@ -1,0 +1,29 @@
+- hosts: pod
+  gather_facts: true
+  become: true
+  tasks:
+  - name: group add for anible
+    group:
+     name: ansible
+  - name: user add for ansible
+    user:
+      name: ansible
+      shell: /bin/bash
+      groups: ansible
+      append: yes
+      create_home: yes
+  - name: create directory
+    file:
+      path: /home/ansible/tmp
+      state: directory
+      owner: ansible
+      mode: 755
+
+  - name: copy file
+    copy:
+      src: /etc/hosts
+      dest: /home/ansible/tmp/hosts
+      owner: ansible
+      mode: 644
+  - name: install ntp
+    apt: name=ntp state=installed

@@ -1,0 +1,17 @@
+---
+- hosts: test_servers
+  gather_facts: False
+  tasks: 
+  - name: group add
+    group:
+      name: "wheel"
+      state: present
+  - name: add user
+    user:
+      name: "{{ item}}"
+      state: present
+      groups: wheel
+    with_items:
+      - hoge
+      - fuga
+      - nyan
