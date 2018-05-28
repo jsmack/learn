@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: test
+      ini_file:
+        dest: /var/tmp/hoge.ini
+        section: AAAAA:wdefault
+        option: AAIPADDR
+        value: "{{ ansible_enp0s3.ipv4.address }}"
+        when: ansible_os_family == 'RedHat'

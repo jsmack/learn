@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: a
+      shell: uname -a
+#      register: result
+      register: failed_result
+      failed_result: failed_result.stderr == ""
+    - name: b
+      debug:
+        var: failed_result.stderr
+#      when: ansible_os_family != 'Debian'
+#      when: result|failed
