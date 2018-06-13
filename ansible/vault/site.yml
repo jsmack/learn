@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars/private.yml
+    - vars/public.yml
+  tasks:
+    - debug: msg="passwd  {{ pass }} "
+...
