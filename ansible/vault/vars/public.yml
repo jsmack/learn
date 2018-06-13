@@ -1,0 +1,2 @@
+---
+pass: "{{ vault_password.test_password }}"
