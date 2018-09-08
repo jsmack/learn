@@ -23,7 +23,7 @@ func main() {
 		// if _, err := io.Copy(os.Stdout, resp.Body); err != nil {
 		// 	fmt.Fprintf(os.Stderr, "1_5: %v\n", err)
 		// }
-		fmt.Println(resp.StatusCode)
+		fmt.Println(resp.Status)
 		//b, err := ioutil.ReadAll(resp.Body)
 		// resp.Body.Close()
 		// if err != nil {
