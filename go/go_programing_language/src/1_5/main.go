@@ -33,3 +33,11 @@ func main() {
 		// fmt.Printf("%s", bb)
 	}
 }
+
+
+func　addPrefix(url string) {
+	if !string.HasPrefix(url, "http://") {
+		string.addPrefix()
+	}
+	return url
+}
