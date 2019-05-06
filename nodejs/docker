@@ -1,0 +1,1 @@
+docker run -itd --privileged --name nodejs  --hostname nodejs-host --volume  /Users/xxx/nodejs:/nodejs   centos /sbin/init
