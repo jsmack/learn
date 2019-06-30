@@ -1,0 +1,35 @@
+﻿■ MACアドレスの整理
+PC1: cc04.2aac.0000
+PC2: cc06.26f8.0000
+PC3: cc06.26f8.0000
+
+■ 初期状態のMACアドレス
+SW#sh mac-address-table
+Destination Address  Address Type  VLAN  Destination Port
+-------------------  ------------  ----  --------------------
+cc03.1c5c.0000          Self          1     Vlan1		<--- L2スイッチ自身のMACアドレスが静的に登録されている（端末間の通信とは関係ない）
+
+■ 往きパケットだけのときのMACアドレス（PC1→PC2）
+SW#sh mac-address-table
+Destination Address  Address Type  VLAN  Destination Port
+-------------------  ------------  ----  --------------------
+cc03.1c5c.0000          Self          1     Vlan1
+cc04.2aac.0000          Dynamic       1     FastEthernet0/1	<--- PC1からPC2に対するEthernetフレームの送信元MACアドレスとポート番号（Fa0/1）を動的に登録する
+
+■ 疎通完了後のMACアドレステーブル（PC2→PC2）
+SW#sh mac-address-table
+Destination Address  Address Type  VLAN  Destination Port
+-------------------  ------------  ----  --------------------
+cc03.1c5c.0000          Self          1     Vlan1
+cc04.2aac.0000          Dynamic       1     FastEthernet0/1
+cc05.293c.0000          Dynamic       1     FastEthernet0/2	<--- PC2からPC1に対するEthernetフレームの送信元MACアドレスとポート番号（Fa0/2）を動的に登録する
+
+■ Pingによる通信が終わって、5分後（アイドルタイムアウト後）のMACアドレステーブル
+SW#sh mac-address-table
+Destination Address  Address Type  VLAN  Destination Port
+-------------------  ------------  ----  --------------------
+cc03.1c5c.0000          Self          1     Vlan1
+								<--- 学習したMACアドレスとポート番号を削除する
+								<--- 学習したMACアドレスとポート番号を削除する
+
+
