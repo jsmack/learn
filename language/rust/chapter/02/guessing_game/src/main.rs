@@ -24,14 +24,14 @@ fn main() {
     // trim = remove white space
     // parse = str to numeric and remove line feed(\n)
     let guess: u32 = guess.trim().parse()
-        .expect("Plese input number");
+        .expect("Please input number");
 
     println!("You guess: {}", guess);
 
     match guess.cmp(&secret_number) {
         Ordering::Less => println!("Too small"),
         Ordering::Greater => println!("Too big"),
-        Ordering::Equal => println!("just do it"),
+        Ordering::Equal => println!("Equal!"),
 
     }
 }
