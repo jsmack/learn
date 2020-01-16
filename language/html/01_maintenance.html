@@ -1,0 +1,349 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Nooooooo!</title>
+    <script>
+        var pawsup = document.querySelector(".paws.up");
+var pawsdown = document.querySelector(".paws.down");
+
+document.addEventListener("mousedown", down);
+document.addEventListener("mouseup", up);
+document.addEventListener("touchstart", down);
+document.addEventListener("touchend", up);
+
+
+function down(){
+  pawsup.classList.add("hide");
+  pawsdown.classList.remove("hide");
+}
+
+function up(){
+  pawsup.classList.remove("hide");
+  pawsdown.classList.add("hide");
+}
+    </script>
+        <style>
+                html {
+          font-size: 1vh;
+          margin: 0;
+          padding: 0;
+          -webkit-user-select: none;
+             -moz-user-select: none;
+              -ms-user-select: none;
+                  user-select: none;
+        }
+        @media screen and (max-aspect-ratio: 1 / 1) {
+          html {
+            font-size: 1vw;
+          }
+        }
+        
+        body {
+          margin: 0;
+          padding: 0;
+          height: 100vh;
+          width: 100vw;
+          background: #fff;
+          overflow: hidden;
+        }
+        
+        .hide {
+          display: none;
+        }
+        
+        .container {
+          width: 80rem;
+          height: 80rem;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translate(-50%, -50%);
+                  transform: translate(-50%, -50%);
+        }
+        .container * {
+          position: absolute;
+        }
+        
+        .table {
+          width: 120vw;
+          height: 100vh;
+          background: #fff;
+          border-top: 1rem solid #000;
+          left: 50%;
+          top: 65%;
+          -webkit-transform-origin: 50% 0%;
+                  transform-origin: 50% 0%;
+          -webkit-transform: translatex(-50%) rotate(15deg);
+                  transform: translatex(-50%) rotate(15deg);
+        }
+        
+        .cat {
+          -webkit-transform: rotate(15deg);
+                  transform: rotate(15deg);
+          top: 15rem;
+          left: 15rem;
+        }
+        .cat .head {
+          width: 70rem;
+          height: 60rem;
+          border: 1rem solid #000;
+          border-radius: 50%;
+        }
+        .cat .ears.fill .ear:first-child {
+          border-bottom: 8rem solid #fff;
+          border-left: 7rem solid transparent;
+          border-right: 7rem solid transparent;
+          -webkit-transform: translate(17rem, -5rem) rotate(-15deg);
+                  transform: translate(17rem, -5rem) rotate(-15deg);
+        }
+        .cat .ears.fill .ear:last-child {
+          border-bottom: 10rem solid #fff;
+          border-left: 3rem solid transparent;
+          border-right: 9rem solid transparent;
+          -webkit-transform: translate(53rem, -2rem) rotate(33deg);
+                  transform: translate(53rem, -2rem) rotate(33deg);
+        }
+        .cat .ears.fill .ear:first-child {
+          top: 1.2rem;
+          left: 0.4rem;
+        }
+        .cat .ears.fill .ear:last-child {
+          top: 1.7rem;
+          left: -0.5rem;
+        }
+        .cat .ears.outline .ear:first-child {
+          border-bottom: 8rem solid #000;
+          border-left: 7rem solid transparent;
+          border-right: 7rem solid transparent;
+          -webkit-transform: translate(17rem, -5rem) rotate(-15deg);
+                  transform: translate(17rem, -5rem) rotate(-15deg);
+        }
+        .cat .ears.outline .ear:last-child {
+          border-bottom: 10rem solid #000;
+          border-left: 3rem solid transparent;
+          border-right: 9rem solid transparent;
+          -webkit-transform: translate(53rem, -2rem) rotate(33deg);
+                  transform: translate(53rem, -2rem) rotate(33deg);
+        }
+        .cat .face {
+          width: 70rem;
+          top: 20rem;
+          left: 17rem;
+        }
+        .cat .face .eyes .eye {
+          position: relative;
+          display: inline-block;
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          background: #000;
+        }
+        .cat .face .eyes .eye:first-child {
+          margin-right: 20rem;
+        }
+        .cat .face .mouth {
+          left: 6.5rem;
+          top: 1rem;
+        }
+        .cat .face .mouth .uu {
+          position: relative;
+        }
+        .cat .face .mouth .uu::before, .cat .face .mouth .uu::after {
+          content: '';
+          display: inline-block;
+          width: 4rem;
+          height: 1.5rem;
+          border-radius: 0 0 50% 50% / 0 0 100% 100%;
+          border: #000 solid 1rem;
+          border-top: none;
+        }
+        .cat .face .mouth .uu::after {
+          margin-left: -0.9rem;
+        }
+        
+        .paws {
+          width: 100rem;
+          left: 50%;
+          top: 65%;
+          -webkit-transform-origin: 50% 0%;
+                  transform-origin: 50% 0%;
+          -webkit-transform: translatex(-50%) rotate(15deg);
+                  transform: translatex(-50%) rotate(15deg);
+        }
+        .paws.up .paw {
+          -webkit-transform-origin: 50% 0%;
+                  transform-origin: 50% 0%;
+          -webkit-transform: rotate(150deg);
+                  transform: rotate(150deg);
+          width: 15rem;
+          height: 14rem;
+          background: #fff;
+          border-bottom: 1rem solid #000;
+          border-right: 1rem solid #000;
+          border-radius: 0 0 50% 50% / 0 0 70% 70%;
+        }
+        .paws.up .paw .palm {
+          background: #ffcccc;
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+          top: 4rem;
+          left: 6rem;
+        }
+        .paws.up .paw .bean {
+          background: #ffcccc;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          top: 9.5rem;
+          left: 7rem;
+        }
+        .paws.up .paw .bean:first-child {
+          top: 8rem;
+          left: 3.5em;
+        }
+        .paws.up .paw .bean:last-child {
+          top: 8rem;
+          left: 10.5rem;
+        }
+        .paws.down .paw {
+          width: 15rem;
+          height: 13rem;
+          background: #fff;
+          border-bottom: 1rem solid #000;
+          border-left: 1rem solid #000;
+          border-right: 1rem solid #000;
+          border-radius: 0 0 50% 50% / 0 0 80% 80%;
+          margin-top: -0.5rem;
+          -webkit-transform-origin: 50% 0%;
+                  transform-origin: 50% 0%;
+          -webkit-transform: rotate(15deg);
+                  transform: rotate(15deg);
+        }
+        .paws.down .paw::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          -webkit-transform: translate(1rem, -90%);
+                  transform: translate(1rem, -90%);
+          background: #fff;
+          border-right: 1rem solid #000;
+          width: 100%;
+          height: 3rem;
+        }
+        .paws.down .paw:first-child {
+          left: 16.5rem;
+        }
+        .paws .paw:first-child {
+          left: 14rem;
+        }
+        .paws .paw:last-child {
+          left: 65rem;
+        }
+        
+        .clickme {
+          font-size: 7rem;
+          position: absolute;
+          bottom: 8rem;
+          left: 0;
+          width: 100vw;
+          text-align: center;
+          font-family: 'Mali', sans-serif;
+        }
+        
+        .eye {
+          -webkit-animation: blink 5s ease infinite;
+                  animation: blink 5s ease infinite;
+        }
+        
+        @-webkit-keyframes blink {
+          0% {
+            -webkit-transform: scaley(1);
+                    transform: scaley(1);
+          }
+          3% {
+            -webkit-transform: scaley(0.1);
+                    transform: scaley(0.1);
+          }
+          6% {
+            -webkit-transform: scaley(1);
+                    transform: scaley(1);
+          }
+          100% {
+            -webkit-transform: scaley(1);
+                    transform: scaley(1);
+          }
+        }
+        
+        @keyframes blink {
+          0% {
+            -webkit-transform: scaley(1);
+                    transform: scaley(1);
+          }
+          3% {
+            -webkit-transform: scaley(0.1);
+                    transform: scaley(0.1);
+          }
+          6% {
+            -webkit-transform: scaley(1);
+                    transform: scaley(1);
+          }
+          100% {
+            -webkit-transform: scaley(1);
+                    transform: scaley(1);
+          }
+        }
+        
+            </style>
+    </head>
+<body>
+<div class="container">
+        <div class="cat">
+          <div class="ears outline">
+            <div class="ear"></div>
+            <div class="ear"></div>
+          </div>
+          <div class="head"></div>
+          <div class="ears fill">
+            <div class="ear"></div>
+            <div class="ear"></div>
+          </div>
+          <div class="face">
+            <div class="eyes">
+              <div class="eye"></div>
+              <div class="eye"></div>
+            </div>
+            <div class="mouth">
+              <div class="uu"></div>
+            </div>
+          </div>
+        </div>
+        <div class="paws up">
+          <div class="paw">
+            <div class="palm"></div>
+            <div class="beans">
+              <div class="bean"></div>
+              <div class="bean"></div>
+              <div class="bean"></div>
+            </div>
+          </div>
+          <div class="paw">
+            <div class="palm"></div>
+            <div class="beans">
+              <div class="bean"></div>
+              <div class="bean"></div>
+              <div class="bean"></div>
+            </div>
+          </div>
+        </div>
+        <div class="table"></div>
+        <div class="paws down hide">
+          <div class="paw"></div>
+          <div class="paw"></div>
+        </div>
+      </div>
+      <div class="clickme">maintenance!</div>
+</body>
