@@ -34,3 +34,4 @@ import ita
 print(total2(a))
 print(total3(a))
 print([1,2,3] * 3)
+print(''.join(['hoge','fuga','wan','hhhh']).count('h'))
