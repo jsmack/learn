@@ -21,6 +21,9 @@ ENV PATH /opt/anaconda3/bin:$PATH
 # update pip and conda
 RUN pip install --upgrade pip
  
+RUN apt-get update
+RUN apt-get install -y libsm6 libxext6 libxrender-dev libglib2.0-0
+RUN pip install opencv-python
 WORKDIR /
 RUN mkdir /work
  
