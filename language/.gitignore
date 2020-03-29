@@ -1,2 +1,5 @@
 *.csv
 setting.json
+*.npy
+*.png
+*.zip
