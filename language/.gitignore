@@ -3,3 +3,6 @@ setting.json
 *.npy
 *.png
 *.zip
+*__MACOSX
+*venv*
+*.DS_Store

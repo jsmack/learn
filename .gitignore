@@ -1,2 +1,12 @@
 /bin/
 .idea
+*.csv
+setting.json
+*.npy
+*.png
+*.zip
+*__MACOSX
+*venv*
+*.DS_Store
+*.db
+*/data/*
