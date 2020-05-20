@@ -1,0 +1,22 @@
+import yaml
+
+
+
+
+with open('config.yaml', 'w') as yaml_file:
+    yaml.dump({
+        'web_server': {
+            'host': '127.0.0.1',
+            'port': 80
+        },
+        'db_server': {
+            'host': '127.0.0.1',
+            'port': 3306
+        }
+    }, yaml_file, default_flow_style=False)
+
+
+with open('config.yaml', 'r') as yaml_file:
+    data = yaml.load(yaml_file)
+    print(data,type('data'))
+    print(data['db_server']['port'])
