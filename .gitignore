@@ -1,4 +1,17 @@
 /bin/
 .idea
+<<<<<<< HEAD
 .DS_Store
 
+=======
+*.csv
+setting.json
+*.npy
+*.png
+*.zip
+*__MACOSX
+*venv*
+*.DS_Store
+*.db
+*/data/*
+>>>>>>> 3b88f1c (add ds (#153 (#52))
