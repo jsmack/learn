@@ -57,3 +57,22 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 3. Execute command
 4. Exit
 
+
+- Run ubuntu container
+  - execute bash
+  - I don't have an image at hand, I can do it automatically
+```
+$ docker run -it ubuntu bash
+root@d3ad4c28c452:/# 
+```
+- option
+  - i(interactive)
+    - アタッチしていなくても STDIN を開き続ける
+  - t
+    - attach tty
+
+- d3ad4c28c452
+  - aut generate container id
+
+
+- Docker image is layer strcture
