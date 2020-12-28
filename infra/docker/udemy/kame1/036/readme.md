@@ -1,0 +1,4 @@
+# Instruction
+- FROM
+- RUN
+- CMD
