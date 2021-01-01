@@ -1,5 +1,5 @@
 # COPY instruction
-- You can import the files int the build context into the docker image by using COPY instruction. 
+- You can import the files in the build context into the docker image by using COPY instruction. 
 
 
 ## Check
