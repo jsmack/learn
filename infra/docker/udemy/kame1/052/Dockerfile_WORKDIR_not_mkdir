@@ -1,0 +1,4 @@
+FROM ubuntu:latest
+
+WORKDIR /sample_dir
+RUN touch sample_file

@@ -29,7 +29,7 @@ $
 - Pull image
 ```
 
-❰kim❙~/work/git/learn/infra/docker(git:kame_docker)❱✔≻ docker pull xxxxx/docker-lean:latest
+>>≻ docker pull xxxxx/docker-lean:latest
 latest: Pulling from xxxxx/docker-lean
 Digest: sha256:1f55f04dfc0fef840f45a9c45cdfb54386da2ed33701301c7f4fde6c3fe94f86
 Status: Downloaded newer image for xxxxx/docker-lean:latest

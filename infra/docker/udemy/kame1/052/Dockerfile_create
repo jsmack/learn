@@ -1,0 +1,5 @@
+FROM ubuntu:latest
+
+RUN mkdir sample_dir \
+&&  cd sample_dir \
+&&  touch sample_file
