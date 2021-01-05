@@ -12,8 +12,8 @@ $ dd if=/dev/zero of=./tempfile bs=1024 count=1000
 $
 $  ls -lh
 total 2016
--rw-r--r--  1 kim  staff    44B 12 31 14:16 Dockerfile
--rw-r--r--  1 kim  staff   1.0M 12 31 14:16 tempfile
+-rw-r--r--  1 xxx  staff    44B 12 31 14:16 Dockerfile
+-rw-r--r--  1 xxx  staff   1.0M 12 31 14:16 tempfile
 $
 ```
 

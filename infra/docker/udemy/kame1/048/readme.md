@@ -12,13 +12,13 @@ mkdir sample_dir
 >>> tar cf ./sample_dir.tar ./sample_dir
 >>>
 >>> tar tvf ./sample_dir.tar
-drwxr-xr-x  0 kim    staff       0 12 31 15:56 ./sample_dir/
--rw-r--r--  0 kim    staff       5 12 31 15:56 ./sample_dir/hoge
+drwxr-xr-x  0 xxx    staff       0 12 31 15:56 ./sample_dir/
+-rw-r--r--  0 xxx    staff       5 12 31 15:56 ./sample_dir/hoge
 >>>
 >>> rm -rf ./sample_dir
 >>> tar tvf sample_dir.tar
-drwxr-xr-x  0 kim    staff       0 12 31 15:56 ./sample_dir/
--rw-r--r--  0 kim    staff       5 12 31 15:56 ./sample_dir/hoge
+drwxr-xr-x  0 xxx    staff       0 12 31 15:56 ./sample_dir/
+-rw-r--r--  0 xxx    staff       5 12 31 15:56 ./sample_dir/hoge
 >>> rm -rf ./sample_dir.tar
 >>>
 >>> cat Dockerfile
