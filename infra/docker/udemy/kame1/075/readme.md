@@ -3,7 +3,7 @@
   - /etc/docker/daemon.json
 ```json
 {
-    "data-root": "/new.docker/daemon/directory"
+    "data-root": "/new.docker/daeon/directory"
 }
 ```
 
@@ -16,6 +16,7 @@ bbbb:x:22221:22221:,,,:/home/bbbb:/bin/bash
 ubuntu@ip-172-31-27-102:~/dsn_env_build$
 ubuntu@ip-172-31-27-102:~/dsn_env_build$ docker run -u 1111 -v /home/aaaa:/home/aaaa -v /home/bbbb:/home/bbbb -it ubuntu bash
 I have no name!@d357c8a74e01:/$
+Try 'id --help' for more information.
 I have no name!@d357c8a74e01:/$ id -u
 1111
 I have no name!@d357c8a74e01:/$ cd /home
