@@ -74,6 +74,7 @@ could not connect to server: No such file or directory
 ```
 
 ## Edit yaml
+- database.yml
 ### build and up
 ```bash
 $ docker-compose up --build -d
