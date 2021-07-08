@@ -27,3 +27,25 @@ def load_nifti(path):
     # 配列の回転
     data_rolled =  np.rollaxis(data, axis=1, start=0)
     return data_rolled
+
+
+def label_color(mask_volume, 
+               gg_color=[255,0,0],
+               consolidation_color=[0, 255, 0],
+               effusion_color=[0, 0, 255]):
+    
+    shp = mask_volume.shape
+    # 箱の作成
+    mask_color = np.zeros((shp[0], shp[1], shp[2], 3), dtype=np.float32)
+
+    # カラー作成
+    ggo_color = [255, 0, 0]
+    consolidation_color = [0, 255, 0]
+    effusion_color = [0, 0, 255]
+
+    # それぞれ色を指定
+    mask_color[np.equal(mask_volume, 1 )] = ggo_color
+    mask_color[np.equal(mask_volume, 2 )] = consolidation_color
+    mask_color[np.equal(mask_volume, 3 )] = effusion_color
+    
+    return mask_color
