@@ -4,6 +4,7 @@ import numpy as np
 import nibabel as nib
 import matplotlib.pyplot as plt
 
+
 # _をつけるとprivate functiontとして定義するが呼ぶことはできる
 # from ctvis import * だと_から始まるfunctionは呼ばれない
 
@@ -27,6 +28,7 @@ def load_nifti(path):
     
     # 配列の回転
     data_rolled =  np.rollaxis(data, axis=1, start=0)
+
     return data_rolled
 
 
@@ -138,3 +140,4 @@ def get_hu_stats(volume,
         
     return result
         
+
