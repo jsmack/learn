@@ -1,5 +1,6 @@
 /bin/
 .idea
+.DS_Store
 *.csv
 setting.json
 *.npy
