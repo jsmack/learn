@@ -1,12 +1,6 @@
 /bin/
 .idea
-<<<<<<< HEAD
-<<<<<<< HEAD
 .DS_Store
-
-=======
-=======
->>>>>>> 4506e9f (Py 20210723 (#110))
 *.csv
 setting.json
 *.npy
@@ -17,11 +11,3 @@ setting.json
 *.DS_Store
 *.db
 */data/*
-<<<<<<< HEAD
->>>>>>> 3b88f1c (add ds (#153 (#52))
-=======
-=======
-.DS_Store
-
->>>>>>> 238cbc5 (Py 20210723 (#110))
->>>>>>> 4506e9f (Py 20210723 (#110))
