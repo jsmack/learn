@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  tasks:
+    - name: sum module
+      sum:
+        num: 10
+        touch: true
+      register: sum_result
+
+    - debug:
+        var: sum_result
+#  roles:
+#    - common
+#    - webserver
+
+
+...
