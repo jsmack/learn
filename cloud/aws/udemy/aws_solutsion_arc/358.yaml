@@ -1,0 +1,145 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description:
+  VPC & subnet Create
+
+Resources:
+  # Create VPC
+  HogeTestVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      InstanceTenancy: default
+      Tags:
+      - Key: Name
+        Value: Hoge-VPC-from-CloudFormation
+    
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref HogeTestVPC
+      Tags:
+      - Key: Name
+        Value: Hoge-CloudFormation-public-RT
+
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref HogeTestVPC
+      Tags:
+      - Key: Name
+        Value: Hoge-CloudFormation-private-RT
+  
+  # Create public subnet and attach route table
+  :
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref HogeTestVPC
+      CidrBlock: 10.0.0.0/24
+      AvailabilityZone: ap-northeast-1a
+      Tags:
+      - Key: Name
+        Value: Hoge-CloudFormation-public-subnet1a
+  PubSubnet1ARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 
+      RouteTableId: !Ref PublicRouteTable
+  
+  PublicSubnet1C:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref HogeTestVPC
+      CidrBlock: 10.0.2.0/24
+      AvailabilityZone: ap-northeast-1c
+      Tags:
+      - Key: Name
+        Value: Hoge-CloudFormation-public-subnet1c
+  PubSubnet1CRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnet1C
+      RouteTableId: !Ref PublicRouteTable
+  
+  # Create private subnet and attach route table
+  PrivateSubnet1A:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref HogeTestVPC
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: ap-northeast-1a
+      Tags:
+      - Key: Name
+        Value: Hoge-CloudFormation-private-subnet1a
+  PriSubnet1ARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PrivateSubnet1A
+      RouteTableId: !Ref PrivateRouteTable
+  
+  PrivateSubnet1C:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref HogeTestVPC
+      CidrBlock: 10.0.3.0/24
+      AvailabilityZone: ap-northeast-1c
+      Tags:
+      - Key: Name
+        Value: Hoge-CloudFormation-private-subnet1c
+  PriSubnet1CRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PrivateSubnet1C
+      RouteTableId: !Ref PrivateRouteTable
+  
+  myInternetGateWay:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: Hoge-CloudFormation-InternetGateway
+  AttachGateWay:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref HogeTestVPC
+      InternetGatewayId: !Ref myInternetGateWay
+  myRoute:
+    Type: AWS::EC2::Route
+    DependsOn: myInternetGateWay
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref myInternetGateWay
+
+# export
+Outputs:
+  StackVPC:
+    Description: The ID of the VPC
+    Value: !Ref HogeTestVPC
+    Export:
+      Name: !Sub "${AWS::StackName}-VPCID"
+    
+  Stack:
+    Description: The ID of the VPC Subnet
+    Value: !Ref 
+    Export:
+      Name: !Sub "${AWS::StackName}-"
+  
+  StackPublicSubnet1C:
+    Description: The ID of the VPC Subnet
+    Value: !Ref PublicSubnet1C
+    Export:
+      Name: !Sub "${AWS::StackName}-PublicSubnet1C"
+  
+  StackPrivateSubnet1A:
+    Description: The ID of the VPC Subnet
+    Value: !Ref PrivateSubnet1A
+    Export:
+      Name: !Sub "${AWS::StackName}-PrivateSubnet1A"
+  
+  StackPrivateSubnet1C:
+    Description: The ID of the VPC Subnet
+    Value: !Ref PrivateSubnet1C
+    Export:
+      Name: !Sub "${AWS::StackName}-PrivateSubnet1C"

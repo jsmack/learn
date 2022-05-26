@@ -1,0 +1,20 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Create EC2 Instance ver2'
+Mappings:
+  RegionMap:
+    ap-northeast-1:
+      # need fix
+      hvm: "ami-ami-id-tokyo"
+    ap-southeast-1:
+      hvm: "ami-ami-id-sing"
+Resources:
+  hogetest:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Reft 
+      InstanceType: t2.micro
+      Tags:
+      - Key: Name
+        Value: hoge-test-2
+
