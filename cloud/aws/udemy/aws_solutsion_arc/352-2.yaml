@@ -1,0 +1,25 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Create EC2 Instance ver2'
+Parameters:
+  InstanceType:
+    Description: Webserver Ec2 instance type
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+    - t1.micro
+    - t2.micro
+    - t2.small
+    ConstraintDescription: must be a valid EC2 instance type
+Resources:
+  hogetest:
+    Type: AWS::EC2::Instance
+    Properties:
+      # need fix
+      ImageId: ami-ami-id-tokyo
+      InstanceType: !Ref InstanceType
+      Tags:
+      - Key: Name
+        Value: hoge-test-2
+      # SubnetId: subnet-subnetID-a
+
