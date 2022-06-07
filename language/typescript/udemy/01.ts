@@ -1,7 +1,7 @@
-const message: string = 'hello world';
+const messages: string = 'hello world';
 
 const main = () =>  {
-    console.log(message)
+    console.log(messages)
 };
 
 main();
