@@ -57,3 +57,21 @@
     "dev": "ts-node-dev --respawn"
   },
 ```
+## Execute npm run
+```shell
+xxx@mac ~/w/g/l/l/t/u/developer (typescript/20220608) [SIGINT]> npm run dev src/install-typescript.ts
+Debugger attached.
+
+> developer@1.0.0 dev
+> ts-node-dev --respawn "src/install-typescript.ts"
+
+Debugger attached.
+[INFO] 10:44:15 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.8.1, typescript ver. 4.7.3)
+Debugger attached.
+{ message: 'Hello ts-node-dev' }
+Waiting for the debugger to disconnect...
+```
+
+# tsconfig.json
+## Create
+`npx tsc --init`
