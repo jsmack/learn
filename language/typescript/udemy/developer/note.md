@@ -23,12 +23,37 @@
 1. `node src/install-typescript.js `
    1. `{ message: 'Hello tyepscript' }`
 
+# Install ts-node
+1. `npm install ts-node@latest`
+2. `ts-node -v`
+   
 # Build and run
 1. `ts-node src/install-typescript.ts`
    1. `{ message: 'Hello tyepscript' }`
 2. `npx ts-node src/install-typescript.ts `
 
+# ts-node-dev
+1. Automatic detection and run
+   1. Install
+      1. `npm install --save-dev ts-node-dev@latest`
+   2. set
+      1. ` npx ts-node-dev --respawn src/install-typescript.ts `
+         1. `{ message: 'Hello ts-node' }`
+         2. option
+            1. --respawn
+               1. `auto detection`
+            2. --transpileOnly
+               1. `not complie`
+   3. Modify and save of src/install-typescript.ts
+      1. `[INFO] 10:31:27 Restarting: /xxxx/developer/src/install-typescript.ts has been modified`
+         `{ message: 'Hello ts-node-dev' }` 
 
-# Install ts-node
-1. `npm install ts-node@latest`
-2. `ts-node -v`
+# Set ts-node-dev
+
+## Set ts-node-dev -on package.json
+```typescript
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --respawn"
+  },
+```
