@@ -22,3 +22,13 @@
 # Run
 1. `node src/install-typescript.js `
    1. `{ message: 'Hello tyepscript' }`
+
+# Build and run
+1. `ts-node src/install-typescript.ts`
+   1. `{ message: 'Hello tyepscript' }`
+2. `npx ts-node src/install-typescript.ts `
+
+
+# Install ts-node
+1. `npm install ts-node@latest`
+2. `ts-node -v`
