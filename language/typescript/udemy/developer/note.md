@@ -75,3 +75,70 @@ Waiting for the debugger to disconnect...
 # tsconfig.json
 ## Create
 `npx tsc --init`
+
+
+# Axios
+## check
+```shell
+npm info axios
+Debugger attached.
+
+axios@0.27.2 | MIT | deps: 2 | versions: 59
+Promise based HTTP client for the browser and node.js
+https://axios-http.com
+
+keywords: xhr, http, ajax, promise, node
+
+dist
+.tarball: https://registry.npmjs.org/axios/-/axios-0.27.2.tgz
+.shasum: 207658cc8621606e586c85db4b41a750e756d972
+.integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+.unpackedSize: 445.7 kB
+
+dependencies:
+follow-redirects: ^1.14.9 form-data: ^4.0.0         
+
+maintainers:
+- mzabriskie <mzabriskie@gmail.com>
+- nickuraltsev <nick.uraltsev@gmail.com>
+- emilyemorehouse <emilyemorehouse@gmail.com>
+- jasonsaayman <jasonsaayman@gmail.com>
+
+dist-tags:
+latest: 0.27.2       next: 1.0.0-alpha.1  
+
+published a month ago by jasonsaayman <jasonsaayman@gmail.com>
+Waiting for the debugger to disconnect...
+```
+## install
+```shell
+npm info axios
+Debugger attached.
+
+axios@0.27.2 | MIT | deps: 2 | versions: 59
+Promise based HTTP client for the browser and node.js
+https://axios-http.com
+
+keywords: xhr, http, ajax, promise, node
+
+dist
+.tarball: https://registry.npmjs.org/axios/-/axios-0.27.2.tgz
+.shasum: 207658cc8621606e586c85db4b41a750e756d972
+.integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+.unpackedSize: 445.7 kB
+
+dependencies:
+follow-redirects: ^1.14.9 form-data: ^4.0.0         
+
+maintainers:
+- mzabriskie <mzabriskie@gmail.com>
+- nickuraltsev <nick.uraltsev@gmail.com>
+- emilyemorehouse <emilyemorehouse@gmail.com>
+- jasonsaayman <jasonsaayman@gmail.com>
+
+dist-tags:
+latest: 0.27.2       next: 1.0.0-alpha.1  
+
+published a month ago by jasonsaayman <jasonsaayman@gmail.com>
+Waiting for the debugger to disconnect...
+```
