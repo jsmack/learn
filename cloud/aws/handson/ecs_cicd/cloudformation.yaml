@@ -51,6 +51,14 @@ Resources:
       Tags:
         - Key: Name
           Value: K-test-handso-Public-Route-table
+    
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: AttachGateway
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
   
   # Create public subnet in Tokyo region A
   PublicSubnetA:
@@ -175,3 +183,48 @@ Resources:
     Properties:
       RouteTableId: !Ref PrivateRouteTableC
       SubnetId: !Ref PrivateSubnetC
+  # ALB
+  SecurityGroupALB:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: K-test-handson-SecurityGroup-ALB
+      VpcId: !Ref VPC
+      GroupName: K-test-handson-SecurityGroup-ALB
+      SecurityGroupIngress:
+        - Description: "Allow 80 port"
+          IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: K-test-handson SG for ALB
+  # ApplicationLoadBalancerA:
+  #   Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+  #   Properties:
+  #     Type: application
+  #     IpAddressType: ipv4
+  #     Name: K-test-handson ALB
+  #     Schema: internet-facing
+  #     SecurityGroups:
+  #       - !Ref SecurityGroupALB
+  #     SubnetMappings:
+  #       - !Ref PublicSubnetA
+  #         !Ref PublicSubnetC
+  #     Tags:
+  #       - Key: Name
+  #         Value: K-test-handson ALB
+      
+  # ApplicationLoadBalancerListenerRuleA:
+  #   Type: AWS::ElasticLoadBalancingV2::ListenerRule
+  #   Properties:
+  #     Actions: 
+  #       - Type: forward
+  # ApplicationLoadBalancerListenerA:
+  #   Type: AWS::ElasticLoadBalancingV2::Listener
+  #   Properties:
+  #     Port: 80
+  #     Protocol: tcp
+  #     Default:Actions:
+  #       - !Ref ApplicationLoadBalancerListenerRuleA
+  #     LoadBalancerArn: 
