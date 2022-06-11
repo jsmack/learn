@@ -1,0 +1,230 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Template of CICD handson
+
+Mappings:
+  StackConfig:
+    VPC:
+      CIDR: 10.1.0.0/16
+    PublicSubnetA:
+      CIDR: 10.1.0.0/24
+    PublicSubnetC:
+      CIDR: 10.1.2.0/24
+    PrivateSubnetA:
+      CIDR: 10.1.1.0/24
+    PrivateSubnetC:
+      CIDR: 10.1.3.0/24
+
+Resources:
+  # Create VPC 
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !FindInMap [ StackConfig, VPC, CIDR]
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Nmae
+          Value: K-test-handson-VPC
+
+  # Create InternetGateWay
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: K-test-handson-IGW
+
+  # Attach IGW on VPC
+  AttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+
+  # Create RouteTable 
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    DependsOn: AttachGateway
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: K-test-handso-Public-Route-table
+    
+  PublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: AttachGateway
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+  
+  # Create public subnet in Tokyo region A
+  PublicSubnetA:
+    Type: AWS::EC2::Subnet
+    DependsOn: AttachGateway
+    Properties:
+      VpcId: !Ref VPC
+      # GetAZs return list on order by ap-northeast-1a、ap-northeast-1c、ap-northeast-1d
+      AvailabilityZone: !Select [ 0, !GetAZs "ap-northeast-1" ]
+      CidrBlock: !FindInMap [ StackConfig, PublicSubnetA, CIDR]
+      Tags:
+        - Key: Name
+          Value: K-test-handson public subnetA
+  # Association subnet routetable 
+  PublicSubnetARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnetA
+      RouteTableId: !Ref PublicRouteTable
+
+  # Create public subnet in Tokyo region B
+  PublicSubnetC:
+    Type: AWS::EC2::Subnet
+    DependsOn: AttachGateway
+    Properties:
+      VpcId: !Ref VPC
+      # GetAZs return list on order by ap-northeast-1a、ap-northeast-1c、ap-northeast-1d
+      AvailabilityZone: !Select [ 1, !GetAZs "ap-northeast-1" ]
+      CidrBlock: !FindInMap [ StackConfig, PublicSubnetC, CIDR]
+      Tags:
+        - Key: Name
+          Value: K-test-handson public subnetC
+  # Association subnet routetable 
+  PublicSubnetCRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref PublicSubnetC
+      RouteTableId: !Ref PublicRouteTable
+  # Issuance EIP
+  EipForNatGWA:
+    Type: AWS::EC2::EIP
+    Properties:
+      # standard(EC2-classic EIP) or vpc(VPC EIP)
+      Domain: vpc
+
+  # Allocate Natgateway EIP and subnet public
+  NatGWA:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt EipForNatGWA.AllocationId
+      SubnetId: !Ref PublicSubnetA
+      Tags:
+        - Key: Name
+          Value: K-test-handson-NatGWA
+  EipForNatGWC:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  NatGWC:
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt EipForNatGWC.AllocationId
+      SubnetId: !Ref PublicSubnetA
+      Tags:
+        - Key: Name
+          Value: K-test-handson-NatGWC
+  PrivateRouteTableA:
+    Type: AWS::EC2::RouteTable
+    DependsOn: NatGWA
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Nmae
+          Value: K-test-handso-Private-Route-tableA
+  PrivateRouteA:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PrivateRouteTableA
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGWA
+  PrivateRouteTableC:
+    Type: AWS::EC2::RouteTable
+    DependsOn: NatGWC
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Nmae
+          Value: K-test-handso-Private-Route-tableC
+  PrivateRouteC:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PrivateRouteTableC
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref NatGWC
+  PrivateSubnetA:
+    Type: AWS::EC2::Subnet
+    DependsOn: NatGWA
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 0, !GetAZs "ap-northeast-1" ]
+      CidrBlock: !FindInMap [ StackConfig, PrivateSubnetA, CIDR ]
+      Tags:
+        - Key: Name
+          Value: K-test-handson private subnetA
+  PrivateSubnetARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PrivateRouteTableA
+      SubnetId: !Ref PrivateSubnetA
+  PrivateSubnetC:
+    Type: AWS::EC2::Subnet
+    DependsOn: NatGWC
+    Properties: 
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 1, !GetAZs "ap-northeast-1" ]
+      CidrBlock: !FindInMap [ StackConfig, PrivateSubnetC, CIDR ]
+      Tags:
+        - Key: Name
+          Value: K-test-handson private subnetC
+  PrivateSubnetCRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PrivateRouteTableC
+      SubnetId: !Ref PrivateSubnetC
+  # ALB
+  SecurityGroupALB:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: K-test-handson-SecurityGroup-ALB
+      VpcId: !Ref VPC
+      GroupName: K-test-handson-SecurityGroup-ALB
+      SecurityGroupIngress:
+        - Description: "Allow 80 port"
+          IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: K-test-handson SG for ALB
+  # ApplicationLoadBalancerA:
+  #   Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+  #   Properties:
+  #     Type: application
+  #     IpAddressType: ipv4
+  #     Name: K-test-handson ALB
+  #     Schema: internet-facing
+  #     SecurityGroups:
+  #       - !Ref SecurityGroupALB
+  #     SubnetMappings:
+  #       - !Ref PublicSubnetA
+  #         !Ref PublicSubnetC
+  #     Tags:
+  #       - Key: Name
+  #         Value: K-test-handson ALB
+      
+  # ApplicationLoadBalancerListenerRuleA:
+  #   Type: AWS::ElasticLoadBalancingV2::ListenerRule
+  #   Properties:
+  #     Actions: 
+  #       - Type: forward
+  # ApplicationLoadBalancerListenerA:
+  #   Type: AWS::ElasticLoadBalancingV2::Listener
+  #   Properties:
+  #     Port: 80
+  #     Protocol: tcp
+  #     Default:Actions:
+  #       - !Ref ApplicationLoadBalancerListenerRuleA
+  #     LoadBalancerArn: 
