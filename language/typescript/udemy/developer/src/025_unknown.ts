@@ -16,6 +16,4 @@ console.log(typeof numberUnknown);
 if (typeof numberUnknown == 'number') {
     let sunUnknwon = numberUnknown + 10;
     console.log(numberUnknown);
-}
-
-
+} 
