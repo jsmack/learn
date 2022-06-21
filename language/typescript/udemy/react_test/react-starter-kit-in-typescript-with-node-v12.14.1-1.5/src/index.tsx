@@ -17,8 +17,11 @@ import App from './App';
 ReactDOM.render(
 // nameはApp.tsxにて許可しないようにしたのでエラーとなる
 //    <App message="Nyan meow"  name="Cat Cat Cat" />, 
-    <App message="Nyan meow"   />, 
-    document.getElementById('root')
+
+// App.tsx.にApp.defaultsPrposを設定し、messageにstrangerを指定したので一旦コメントアウト
+//    <App message="Nyan meow"   />, 
+<App  />, 
+document.getElementById('root')
 );
 
 
