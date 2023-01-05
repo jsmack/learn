@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+h1 {
+    color: red;
+    font-size: 40px;
+}
+
+h2 {
+    color: white;
+    background-color: black;
+    font-size: 30px;
+}
+
+
+img {
+    width: 50%;
+    height: 50%;
+}
+
+header {
+    background-color: blue;
+    color: blanchedalmond;
+    height: 100px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+}
+
+.contents {
+    text-align: center;
+}
+
+footer {
+    background-color: green;
+    color: white;
+    height: 100px;
+    border: 10px solid red;
+    /* padding: 20px; */
+    margin:  20px;
+    text-align: center;
+    padding-top: 20px;
+}
